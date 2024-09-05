@@ -1,5 +1,6 @@
 package com.priyanshu.battlezone.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -10,7 +11,8 @@ import com.priyanshu.battlezone.ui.screens.splash.SplashScreen
 @Composable
 fun SetUpNavigation(
     navController: NavHostController,
-    showBottomBar: (Boolean) -> Unit
+    showBottomBar: (Boolean) -> Unit,
+    innerPaddingValues: PaddingValues
 ) {
 
     NavHost(navController = navController, startDestination = Screens.Splash.route){
@@ -26,7 +28,7 @@ fun SetUpNavigation(
 
         composable(route = Screens.Home.route){
             showBottomBar(true)
-            HomeScreen()
+            HomeScreen(innerPaddingValues)
         }
 
         composable(route = Screens.Leaderboard.route){

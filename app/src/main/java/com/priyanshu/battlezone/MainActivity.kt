@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             SetUpNavigation(navController,
                                 showBottomBar = {
                                     showBottomBar = it
-                                })
+                                },innerPadding)
                         },
                         bottomBar = {
                             if (showBottomBar) {
