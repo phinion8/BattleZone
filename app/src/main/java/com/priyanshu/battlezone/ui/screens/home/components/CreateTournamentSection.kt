@@ -32,7 +32,6 @@ fun CreateTournamentSection() {
 
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
-    val screenHeight = configuration.screenHeightDp
 
     Row(
         modifier = Modifier

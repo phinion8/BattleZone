@@ -20,12 +20,12 @@ val bottomNavItems = listOf<BottomNavItem>(
     BottomNavItem(
         icon = R.drawable.ic_leaderboard,
         title = "Tournament",
-        route = Screens.Leaderboard.route
+        route = Screens.Tournament.route
     ),
     BottomNavItem(
         icon = R.drawable.ic_tournament,
         title = "Leaderboard",
-        route = Screens.Tournament.route
+        route = Screens.Leaderboard.route
     ),
     BottomNavItem(
         icon = R.drawable.ic_profile,

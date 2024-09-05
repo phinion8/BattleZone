@@ -4,6 +4,7 @@ import com.priyanshu.battlezone.data.DummyData
 import com.priyanshu.battlezone.domain.models.GameItem
 import com.priyanshu.battlezone.domain.models.TournamentItem
 import com.priyanshu.battlezone.domain.models.UserItem
+import com.priyanshu.battlezone.domain.models.UserTournamentItem
 import com.priyanshu.battlezone.domain.repositories.Repository
 import javax.inject.Inject
 
@@ -22,5 +23,9 @@ class RepositoryImpl @Inject constructor(): Repository {
 
     override fun getRecommendationList(): List<UserItem> {
         return DummyData.recommendationList
+    }
+
+    override fun getUserTournamentList(): List<UserTournamentItem> {
+        return DummyData.userTournamentList
     }
 }

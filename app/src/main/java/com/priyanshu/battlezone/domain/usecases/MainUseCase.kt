@@ -3,6 +3,7 @@ package com.priyanshu.battlezone.domain.usecases
 import com.priyanshu.battlezone.domain.models.GameItem
 import com.priyanshu.battlezone.domain.models.TournamentItem
 import com.priyanshu.battlezone.domain.models.UserItem
+import com.priyanshu.battlezone.domain.models.UserTournamentItem
 import com.priyanshu.battlezone.domain.repositories.Repository
 import com.priyanshu.battlezone.utils.Result
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,19 @@ import javax.inject.Inject
 class MainUseCase @Inject constructor(
     private val repository: Repository
 ) {
+
+    fun getUserTournamentList(): Flow<Result<List<UserTournamentItem>>> = flow {
+        emit(Result.Loading())
+        delay(1000)
+        try {
+            val userTournamentList = repository.getUserTournamentList()
+            emit(Result.Success(userTournamentList))
+        }catch (e: Exception){
+            emit(Result.Error("Something went wrong!"))
+        }
+    }.catch {
+        emit(Result.Error("Something went wrong!"))
+    }.flowOn(Dispatchers.IO)
 
     fun getRecommendationList(): Flow<Result<List<UserItem>>> = flow {
         emit(Result.Loading())

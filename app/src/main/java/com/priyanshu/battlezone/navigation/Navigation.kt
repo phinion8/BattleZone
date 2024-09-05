@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.priyanshu.battlezone.ui.screens.home.HomeScreen
 import com.priyanshu.battlezone.ui.screens.splash.SplashScreen
+import com.priyanshu.battlezone.ui.screens.tournament.TournamentScreen
 
 @Composable
 fun SetUpNavigation(
@@ -37,6 +38,7 @@ fun SetUpNavigation(
 
         composable(route = Screens.Tournament.route){
             showBottomBar(true)
+            TournamentScreen(innerPaddingValues)
         }
 
         composable(route = Screens.Profile.route){

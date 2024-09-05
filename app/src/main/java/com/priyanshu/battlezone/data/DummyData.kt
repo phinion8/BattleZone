@@ -3,7 +3,9 @@ package com.priyanshu.battlezone.data
 import com.priyanshu.battlezone.R
 import com.priyanshu.battlezone.domain.models.GameItem
 import com.priyanshu.battlezone.domain.models.TournamentItem
+import com.priyanshu.battlezone.domain.models.TournamentStatus
 import com.priyanshu.battlezone.domain.models.UserItem
+import com.priyanshu.battlezone.domain.models.UserTournamentItem
 
 object DummyData {
 
@@ -62,6 +64,53 @@ object DummyData {
             enrolled = "670",
             winingPrice = "10000",
             isRegistrationOpen = true
+        )
+    )
+
+    val userTournamentList = listOf(
+        UserTournamentItem(
+            title = "PUBG Tournament",
+            company = "Red Bull",
+            companyImage = R.drawable.sample_company_img,
+            gameName = "PUBG",
+            playerGrouping = "Solo",
+            duration = "Starts 3rd Aug at 10:00 pm",
+            pricePool = "10000",
+            entryFees = "10",
+            tournamentStatus = TournamentStatus.UPCOMING
+        ),
+        UserTournamentItem(
+            title = "PUBG Tournament",
+            company = "Red Bull",
+            companyImage = R.drawable.sample_company_img,
+            gameName = "PUBG",
+            playerGrouping = "Solo",
+            duration = "Starts 3rd Aug at 10:00 pm",
+            pricePool = "10000",
+            entryFees = "10",
+            tournamentStatus = TournamentStatus.ONGOING
+        ),
+        UserTournamentItem(
+            title = "PUBG Tournament",
+            company = "Red Bull",
+            companyImage = R.drawable.sample_company_img,
+            gameName = "PUBG",
+            playerGrouping = "Solo",
+            duration = "Starts 3rd Aug at 10:00 pm",
+            pricePool = "10000",
+            entryFees = "10",
+            tournamentStatus = TournamentStatus.COMPLETED
+        ),
+        UserTournamentItem(
+            title = "PUBG Tournament",
+            company = "Red Bull",
+            companyImage = R.drawable.sample_company_img,
+            gameName = "PUBG",
+            playerGrouping = "Solo",
+            duration = "Starts 3rd Aug at 10:00 pm",
+            pricePool = "10000",
+            entryFees = "10",
+            tournamentStatus = TournamentStatus.COMPLETED
         )
     )
 
