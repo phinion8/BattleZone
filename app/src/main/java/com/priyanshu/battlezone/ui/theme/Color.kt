@@ -11,6 +11,7 @@ val green = Color(0xFF01B752)
 val cream = Color(0xFFFFC39B)
 val gray = Color(0xFF909090)
 val darkGreen = Color(0xFF001208)
+val darkBlue = Color(0xFF0c0f14)
 
 
 val primaryColor: Color
@@ -19,4 +20,9 @@ val primaryColor: Color
 
 val secondaryColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) darkGreen else white
+    get() = if (isSystemInDarkTheme()) darkBlue else white
+
+val bottomBarBackgroundColor: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) black else white
+
