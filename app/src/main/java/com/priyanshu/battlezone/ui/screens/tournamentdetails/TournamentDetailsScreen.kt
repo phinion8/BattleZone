@@ -27,6 +27,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
@@ -44,6 +45,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -60,10 +62,12 @@ import com.priyanshu.battlezone.data.DummyData
 import com.priyanshu.battlezone.domain.models.UserItem
 import com.priyanshu.battlezone.domain.models.WinnerUserItem
 import com.priyanshu.battlezone.ui.components.button.CustomElevatedButton
+import com.priyanshu.battlezone.ui.screens.tournament.components.TournamentDetailsLoadingLayout
 import com.priyanshu.battlezone.ui.screens.tournamentdetails.components.ItemLeaderboardUser
 import com.priyanshu.battlezone.ui.screens.tournamentdetails.viewmodel.TournamentDetailsViewModel
 import com.priyanshu.battlezone.ui.theme.black
 import com.priyanshu.battlezone.ui.theme.gray
+import com.priyanshu.battlezone.ui.theme.green
 import com.priyanshu.battlezone.ui.theme.poppins_semiBold
 import com.priyanshu.battlezone.ui.theme.primaryColor
 import com.priyanshu.battlezone.ui.theme.secondaryColor
@@ -76,6 +80,7 @@ fun TournamentDetailsScreen(
 ) {
 
     val winnerUserList by viewModel.winnerUserList.collectAsState()
+    val loading by viewModel.loading.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -86,7 +91,7 @@ fun TournamentDetailsScreen(
         }
 
         Column(
-             modifier = Modifier.weight(9f)
+            modifier = Modifier.weight(9f)
         ) {
             AnimatedVisibility(
                 visible = headerVisibility,
@@ -100,7 +105,8 @@ fun TournamentDetailsScreen(
                 onScrollUp = {
                     headerVisibility = it
                 },
-                winnerUserList
+                winnerUserList,
+                isLoading = loading
             )
 
         }
@@ -112,9 +118,7 @@ fun TournamentDetailsScreen(
             },
             text = "Join Tournament"
         )
-
     }
-
 
 }
 
@@ -226,7 +230,8 @@ fun TournamentDetailsHeader() {
 @Composable
 fun TournamentTabSection(
     onScrollUp: (Boolean) -> Unit,
-    winnerUserList: List<WinnerUserItem>
+    winnerUserList: List<WinnerUserItem>,
+    isLoading: Boolean
 ) {
     val lazyListState = rememberLazyListState()
     val headerVisibility = lazyListState.isScrollingUp()
@@ -265,7 +270,7 @@ fun TournamentTabSection(
                     },
                     text = { Text(text = tabItem, style = MaterialTheme.typography.bodyLarge) },
                     unselectedContentColor = gray,
-                    selectedContentColor = white,
+                    selectedContentColor = primaryColor,
                 )
             }
 
@@ -278,7 +283,7 @@ fun TournamentTabSection(
             Column(modifier = Modifier.fillMaxWidth()) {
                 when (index) {
                     0 -> {
-                        StandingSection(lazyListState, winnerUserList)
+                        StandingSection(lazyListState, winnerUserList, isLoading)
                     }
 
                     1 -> {
@@ -308,10 +313,9 @@ fun TournamentTabSection(
 @Composable
 fun StandingSection(
     lazyListState: LazyListState,
-    winnerUserList: List<WinnerUserItem>
+    winnerUserList: List<WinnerUserItem>,
+    isLoading: Boolean
 ) {
-
-    val winnerList = DummyData.winnerUserList
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp
 
@@ -323,31 +327,54 @@ fun StandingSection(
         state = lazyListState
     ) {
 
-        item {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                WinnerUserPositionItem(modifier = Modifier.offset(y = 64.dp), winnerList[1], 50.dp)
-
-                WinnerUserPositionItem(modifier = Modifier.offset(y = 0.dp), winnerList[0], 64.dp)
-
-                WinnerUserPositionItem(modifier = Modifier.offset(y = 72.dp), winnerList[2], 50.dp)
+        if (isLoading) {
+            item {
+                CircularProgressIndicator(
+                    strokeCap = StrokeCap.Round,
+                    color = green
+                )
             }
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 4.dp)
-                    .height((screenHeight / 5).dp),
-                painter = painterResource(R.drawable.position_image),
-                contentDescription = "Position Image"
-            )
+        } else {
+            if (winnerUserList.isNotEmpty()) {
+                item {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        WinnerUserPositionItem(
+                            modifier = Modifier.offset(y = 64.dp),
+                            winnerUserList[1],
+                            50.dp
+                        )
 
-            Spacer(Modifier.height(16.dp))
-        }
+                        WinnerUserPositionItem(
+                            modifier = Modifier.offset(y = 0.dp),
+                            winnerUserList[0],
+                            64.dp
+                        )
 
-        items(winnerUserList.subList(3, DummyData.winnerUserList.size)){
-            ItemLeaderboardUser(it)
+                        WinnerUserPositionItem(
+                            modifier = Modifier.offset(y = 72.dp),
+                            winnerUserList[2],
+                            50.dp
+                        )
+                    }
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 32.dp, vertical = 4.dp)
+                            .height((screenHeight / 5).dp),
+                        painter = painterResource(R.drawable.position_image),
+                        contentDescription = "Position Image"
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+                }
+
+                items(winnerUserList.subList(3, DummyData.winnerUserList.size)) {
+                    ItemLeaderboardUser(it)
+                }
+            }
         }
     }
 

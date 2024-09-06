@@ -37,6 +37,7 @@ import com.priyanshu.battlezone.domain.models.TournamentItem
 import com.priyanshu.battlezone.ui.theme.black
 import com.priyanshu.battlezone.ui.theme.gray
 import com.priyanshu.battlezone.ui.theme.green
+import com.priyanshu.battlezone.ui.theme.white
 
 @Composable
 fun ItemTournament(
@@ -81,7 +82,7 @@ fun ItemTournament(
                         .background(black.copy(alpha = 0.5f))
                         .padding(horizontal = 12.dp, vertical = 8.dp),
                     text = if (item.isRegistrationOpen) "Registration Open" else "Registration Closed",
-                    style = MaterialTheme.typography.bodyLarge.copy(fontSize = 14.sp)
+                    style = MaterialTheme.typography.bodyLarge.copy(fontSize = 14.sp, color = white)
                 )
 
                 Row(
@@ -100,7 +101,7 @@ fun ItemTournament(
                     )
                     Text(
                         text = item.winingPrice,
-                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 14.sp)
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 14.sp, color = white)
                     )
                     Image(
                         modifier = Modifier.size(16.dp),

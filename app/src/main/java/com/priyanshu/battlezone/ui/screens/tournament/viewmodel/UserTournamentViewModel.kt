@@ -35,11 +35,11 @@ class UserTournamentViewModel @Inject constructor(
 
                 when(result){
                     is Result.Loading -> {
-                        _loading.value = false
+                        _loading.value = true
                     }
 
                     is Result.Success -> {
-                        _loading.value = true
+                        _loading.value = false
                         if (result.data != null)
                             _userTournamentList.value = result.data
                     }

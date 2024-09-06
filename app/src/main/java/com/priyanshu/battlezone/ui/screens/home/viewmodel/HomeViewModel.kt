@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
     )
     val recommendationList = _recommendationList.asStateFlow()
 
-    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val loading = _loading.asStateFlow()
 
     private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
@@ -53,11 +53,11 @@ class HomeViewModel @Inject constructor(
 
                 when (result) {
                     is Result.Loading -> {
-                        _loading.value = false
+                        _loading.value = true
                     }
 
                     is Result.Success -> {
-                        _loading.value = true
+                        _loading.value = false
                         if (result.data != null)
                             _recommendationList.value = result.data
                     }
@@ -76,11 +76,11 @@ class HomeViewModel @Inject constructor(
             useCase.getBannerList().collect { result ->
                 when (result) {
                     is Result.Loading -> {
-                        _loading.value = false
+                        _loading.value = true
                     }
 
                     is Result.Success -> {
-                        _loading.value = true
+                        _loading.value = false
                         if (result.data != null)
                             _bannerList.value = result.data
                     }

@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.priyanshu.battlezone.R
+import com.priyanshu.battlezone.ui.theme.primaryColor
 import com.priyanshu.battlezone.ui.theme.white
 import com.priyanshu.battlezone.utils.AppUtils
 
@@ -75,7 +76,7 @@ fun TopAppBar(
             Row(
                 modifier = Modifier
                     .clip(CircleShape)
-                    .border(width = 1.dp, color = white, shape = CircleShape)
+                    .border(width = 1.dp, color = primaryColor, shape = CircleShape)
                     .padding(vertical = 8.dp, horizontal = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween

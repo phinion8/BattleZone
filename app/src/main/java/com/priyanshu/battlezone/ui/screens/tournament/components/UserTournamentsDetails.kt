@@ -38,7 +38,8 @@ fun UserTournamentsDetails() {
             "Total Tournaments - 47",
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                color = white
             )
         )
 

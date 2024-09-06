@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.priyanshu.battlezone.R
 import com.priyanshu.battlezone.ui.theme.gray
+import com.priyanshu.battlezone.ui.theme.primaryColor
 import com.priyanshu.battlezone.ui.theme.white
 
 @Composable
@@ -62,7 +63,7 @@ fun SearchBar(
                     .padding(start = 16.dp, end = 8.dp),
                 imageVector = Icons.Default.Search,
                 contentDescription = "Search Icon",
-                tint = white
+                tint = primaryColor
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
@@ -84,7 +85,7 @@ fun SearchBar(
                     .padding(start = 16.dp, end = 16.dp),
                 painter = painterResource(R.drawable.ic_filter),
                 contentDescription = "Filter Icon",
-                tint = white
+                tint = primaryColor
             )
         }
 
