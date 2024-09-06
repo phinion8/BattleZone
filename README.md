@@ -2,7 +2,7 @@
 
 [Watch App Overview Video](https://drive.google.com/file/d/1F4p-rCjsh5opgvQSFPUticgGOlHDoTLk/view?usp=sharing)<br/>
 
-[Download APK](https://drive.google.com/file/d/1QsZg9AfNwcOu5tk7CsJXFdCMucsABtyj/view?usp=sharing)
+[Download APK](https://drive.google.com/file/d/1QSqq1IVfdvp2qf9zn3mx459VRhO5xFNn/view?usp=sharing)
 
 ## App Screenshots In Dark Mode
 
