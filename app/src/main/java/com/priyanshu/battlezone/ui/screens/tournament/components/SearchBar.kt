@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DividerDefaults
@@ -22,12 +25,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.priyanshu.battlezone.R
 import com.priyanshu.battlezone.ui.theme.gray
@@ -39,6 +50,10 @@ fun SearchBar(
     modifier: Modifier,
     onSearchBarClick: () -> Unit
 ) {
+
+    var searchQuery by remember {
+        mutableStateOf("")
+    }
 
     Row(
         modifier = modifier
@@ -55,6 +70,7 @@ fun SearchBar(
     ) {
 
         Row(
+            modifier = Modifier.weight(4f),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -66,13 +82,34 @@ fun SearchBar(
                 tint = primaryColor
             )
             Spacer(modifier = Modifier.width(12.dp))
-            Text(
-                text = "Search",
-                style = MaterialTheme.typography.bodyLarge.copy(color = gray)
+            BasicTextField(
+                onValueChange = {
+                    searchQuery = it
+                },
+                value = searchQuery,
+                textStyle = MaterialTheme.typography.bodyLarge.copy(color = primaryColor),
+                modifier = Modifier,
+                singleLine = true,
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = {
+
+
+                }),
+                decorationBox = { innerTextField ->
+                    if (searchQuery.isEmpty()) {
+                        Text(
+                            text = "Search",
+                            style = MaterialTheme.typography.bodyLarge.copy(color = gray)
+                        )
+                    }
+                    innerTextField()
+                },
+                cursorBrush = SolidColor(primaryColor)
             )
         }
 
         Row(
+            modifier = Modifier.weight(1.5f),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -95,3 +132,4 @@ fun SearchBar(
     }
 
 }
+

@@ -86,25 +86,12 @@ fun TournamentDetailsScreen(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        var headerVisibility by remember {
-            mutableStateOf(false)
-        }
-
         Column(
             modifier = Modifier.weight(9f)
         ) {
-            AnimatedVisibility(
-                visible = headerVisibility,
-                exit = shrinkVertically(),
-                enter = expandVertically()
-            ) {
-                TournamentDetailsHeader()
-            }
+            TournamentDetailsHeader()
 
             TournamentTabSection(
-                onScrollUp = {
-                    headerVisibility = it
-                },
                 winnerUserList,
                 isLoading = loading
             )
@@ -229,15 +216,10 @@ fun TournamentDetailsHeader() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TournamentTabSection(
-    onScrollUp: (Boolean) -> Unit,
     winnerUserList: List<WinnerUserItem>,
     isLoading: Boolean
 ) {
     val lazyListState = rememberLazyListState()
-    val headerVisibility = lazyListState.isScrollingUp()
-    LaunchedEffect(key1 = headerVisibility) {
-        onScrollUp(headerVisibility)
-    }
     var selectedTabIndex by remember {
         mutableIntStateOf(0)
     }
