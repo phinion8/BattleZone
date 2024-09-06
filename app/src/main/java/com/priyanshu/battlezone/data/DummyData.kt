@@ -6,6 +6,7 @@ import com.priyanshu.battlezone.domain.models.TournamentItem
 import com.priyanshu.battlezone.domain.models.TournamentStatus
 import com.priyanshu.battlezone.domain.models.UserItem
 import com.priyanshu.battlezone.domain.models.UserTournamentItem
+import com.priyanshu.battlezone.domain.models.WinnerUserItem
 
 object DummyData {
 
@@ -111,6 +112,69 @@ object DummyData {
             pricePool = "10000",
             entryFees = "10",
             tournamentStatus = TournamentStatus.COMPLETED
+        )
+    )
+
+    val winnerUserList = listOf(
+        WinnerUserItem(
+            name = "Priyanshu",
+            image = R.drawable.winner_user_img_1,
+            position = 1,
+            gameHockRank = 1123
+        ),
+        WinnerUserItem(
+            name = "Legend Gamer",
+            image = R.drawable.winner_user_img_2,
+            position = 2,
+            gameHockRank = 1122
+        ),
+        WinnerUserItem(
+            name = "Legend Gamer",
+            image = R.drawable.sample_user_1,
+            position = 3,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Legend Gamer",
+            image = R.drawable.sample_user_1,
+            position = 4,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 5,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 6,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 7,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 8,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 9,
+            gameHockRank = 1121
+        ),
+        WinnerUserItem(
+            name = "Danielle Hermiston",
+            image = R.drawable.sample_user_1,
+            position = 10,
+            gameHockRank = 1121
         )
     )
 

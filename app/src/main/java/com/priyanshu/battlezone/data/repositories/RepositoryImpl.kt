@@ -5,6 +5,7 @@ import com.priyanshu.battlezone.domain.models.GameItem
 import com.priyanshu.battlezone.domain.models.TournamentItem
 import com.priyanshu.battlezone.domain.models.UserItem
 import com.priyanshu.battlezone.domain.models.UserTournamentItem
+import com.priyanshu.battlezone.domain.models.WinnerUserItem
 import com.priyanshu.battlezone.domain.repositories.Repository
 import javax.inject.Inject
 
@@ -27,5 +28,9 @@ class RepositoryImpl @Inject constructor(): Repository {
 
     override fun getUserTournamentList(): List<UserTournamentItem> {
         return DummyData.userTournamentList
+    }
+
+    override fun getWinnerUserList(): List<WinnerUserItem> {
+        return DummyData.winnerUserList
     }
 }

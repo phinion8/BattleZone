@@ -3,6 +3,7 @@ package com.priyanshu.battlezone.ui.screens.tournament.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,7 +44,8 @@ import com.priyanshu.battlezone.ui.theme.white
 
 @Composable
 fun ItemUserTournament(
-    item: UserTournamentItem
+    item: UserTournamentItem,
+    onItemClick: () -> Unit
 ) {
 
     Column(
@@ -53,6 +55,9 @@ fun ItemUserTournament(
             .clip(RoundedCornerShape(12.dp))
             .border(width = 1.dp, shape = RoundedCornerShape(12.dp), color = gray)
             .padding(all = 16.dp)
+            .clickable {
+                onItemClick()
+            }
     ) {
 
         Row(
